@@ -10,7 +10,7 @@ def frames_to_video(out_folder, filename, fps):
     for file in glob.glob(f'{out_folder}/*.png'):
         image_files.append(file)
 
-    image_files.sort()
+    image_files.sort(key = lambda x: int(x.split('/')[-1].split('.')[0]))
 
     clip = moviepy.video.io.ImageSequenceClip.ImageSequenceClip(image_files, fps=fps)
     clip.write_videofile(filename)
